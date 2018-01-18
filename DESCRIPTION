@@ -1,0 +1,13 @@
+Package: nppesapi
+Type: Package
+Title: An R Wrapper to the NPPES API
+Version: 0.0.1
+Author: Who wrote it
+Maintainer: Brandon M. Greenwell <greenwell.brandon@gmail.com>
+Description: An R wrapper to query the NPPES API that allows systems to access 
+  NPPES public data in real-time, rather than through batched uploads. The API 
+  retrieves data from NPPES daily.
+License: GPL (>= 2)
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.0.1
