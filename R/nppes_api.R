@@ -25,14 +25,14 @@ nppes_api <- function(query) {
   }
 
   # Parse the returned JSON file
-  parsed <- jsonlite::fromJSON(content(resp, "text"), simplifyVector = FALSE)
+  parsed <- jsonlite::fromJSON(httr::content(resp, "text"), simplifyVector = FALSE)
 
   # Turn API errors into R errors
-  if (http_error(resp)) {
+  if (httr::http_error(resp)) {
     stop(
       sprintf(
         "NPPES API request failed [%s]\n%s\n<%s>",
-        status_code(resp),
+        httr::status_code(resp),
         parsed$message,
         parsed$documentation_url
       ),
