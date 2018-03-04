@@ -20,7 +20,7 @@ nppes_api <- function(query) {
   # Query the NPPES API
   url <- httr::modify_url("https://npiregistry.cms.hhs.gov/api/", query = query)
   resp <- httr::GET(url)
-  if (http_type(resp) != "application/json") {
+  if (httr::http_type(resp) != "application/json") {
     stop("API did not return json", call. = FALSE)
   }
 
