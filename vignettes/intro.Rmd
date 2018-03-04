@@ -1,0 +1,51 @@
+---
+title: "Introduction to nppesapi"
+author: "Brandon Greenwell, and Dan Garmat"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to nppesapi}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 5, fig.height = 5)
+```
+
+The `nppesapi` package queries the NPPES API with an R wrapper. It allows systems to access NPPES public data in real-time, rather than through batched uploads. The API retrieves data from NPPES daily. 
+
+
+For example, suppose we have a city we need to get information on all providers in Dayton. We could query NPPES with:
+
+```{r explain1}
+library(nppesapi)
+nppes_api("city=dayton"))
+```
+
+In a knitr document, you might prefer to put `results = 'asis'`. For instance, in this next chunk, the output just looks like regular text:
+
+```{r explain2, results = 'asis'}
+nppes_api("city=dayton"))
+```
+
+### More advanced
+
+You can perform more advanced queries of the NPPES API. A full list of API codes is [on the NPPES wesite](https://npiregistry.cms.hhs.gov/registry/help-api). 
+For instance, all Acupuncturists in zip code 97209:
+
+```{r lmdisplay, results = 'asis'}
+res <- nppes_api("taxonomy_description,postal_code=97209"))
+res
+```
+
+If then want to extract some information, such as all NPIs could do the following:
+```{r lmdisplay2, results = 'asis'}
+
+```
+
+Could also query a list of NPIs and extract a different field, such as ZIP. Here, using the same list, should all get 97209:
+
+```{r lmdisplay3, results = 'asis'}
+
+```
