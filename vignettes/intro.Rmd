@@ -25,10 +25,10 @@ nppes_api("number=1124021324")
 
 You can perform more advanced queries of the NPPES API. A full list of accepting API code is [on the NPPES wesite](https://npiregistry.cms.hhs.gov/registry/help-api).
 
-For instance, first 10 acupuncturists in zip code 97209:
+For instance, first 5 acupuncturists in zip code 97209:
 
 ```{r advanced}
-query1 <- nppes_api("postal_code=97209&taxonomy_description=ACUPUNCTURIST")
+query1 <- nppes_api("postal_code=97209&taxonomy_description=ACUPUNCTURIST&limit=5")
 query1
 ```
 
@@ -39,16 +39,21 @@ acuvec
 
 ```
 
-Could also query a list of NPIs and extract a different field, such as ZIP. Here, using the same list, should all get 97209, but don't weirdly enough. The two office issue? Wrong field?:
+Could also query a list of NPIs and use a custom function to extract a different field, such as ZIP. Here, using the same list, should all get 97209, and indeed do for primary practice address, addresses[[1]]:
 
 ```{r advanced3}
-npilist <- lapply(paste0("number=",acuvec), nppes_api)
-#npilist
+query2 <- (paste0("number=",acuvec))
+names(query2) <- acuvec
 
-npilist2 <- (lapply(npilist, '[[', "content")) # there is an easier way to do this but I forgot it. Maybe with jsonlite?
-npilist3 <- lapply(npilist2, '[[', "results")
-for(i in 1:10){
-  print(npilist3[[i]][[1]]$addresses[[2]]$postal_code)
+npi_to_zip <- function(npi){
+  nppes_result <- nppes_api(npi)
+  zip <- nppes_result$content$results[[1]]$addresses[[1]]$postal_code
+  zip <- substr(zip, 1, 5)
 }
 
+npilist <- lapply(query2, npi_to_zip)
+
+table(unlist(npilist))  # hope to see 5 !!
+
 ```
+
