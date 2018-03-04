@@ -1,14 +1,12 @@
 # nppesapi
 
-What is nppesapi?
-
 ### What is nppesapi?
 
 **nppesapi** queries the NPPES API with an R wrapper. It allows systems to access 
   NPPES public data in real-time, rather than through batched uploads. The API 
   retrieves data from NPPES daily. 
 
-For help with the **nppesapi** R-package, there (will be) a vignette available in the /vignettes folder.
+For help with the **nppesapi** R-package, there is a vignette available in the /vignettes folder.
   
 # Installation
 
