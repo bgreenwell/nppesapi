@@ -1,1 +1,38 @@
 # nppesapi
+
+What is nppesapi?
+
+### What is nppesapi?
+
+**nppesapi** queries the NPPES API with an R wrapper. It allows systems to access 
+  NPPES public data in real-time, rather than through batched uploads. The API 
+  retrieves data from NPPES daily. 
+
+For help with the **nppesapi** R-package, there (will be) a vignette available in the /vignettes folder.
+  
+# Installation
+
+The package can be installed with
+
+    devtools::install_github("dgarmat/nppesapi")
+
+After installation, the package can be loaded into R.
+
+    library(nppesapi)
+
+# Using nppesapi
+
+The main function in the **nppesapi** package is `nppes_api()`.  
+
+```
+nppes_api("city=dayton")
+nppes_api("number=1124021324")
+```
+
+# Bug reports
+Report bugs as issues on the [GitHub repository](https://github.com/dgarmat/nppesapi)
+
+# Contributors
+
+* [Brandon Greenwell](https://github.com/bgreenwell)
+* [Dan Garmat](https://github.com/dgarmat)
