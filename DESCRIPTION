@@ -2,12 +2,18 @@ Package: nppesapi
 Type: Package
 Title: An R Wrapper to the NPPES API
 Version: 0.0.2
-Author: Who wrote it
+Authors@R: c(
+  person("Brandon", "Greenwell", email = "greenwell.brandon@gmail.com", role = c("aut", "cre")),
+  person("Daniel", "Garmat", email = "dgarmat@gmail.com", role = c("aut"))
+  )
 Maintainer: Brandon M. Greenwell <greenwell.brandon@gmail.com>
 Contributer: Dan Garmat <dgarmat@gmail.com>
 Description: An R wrapper to query the NPPES API that allows systems to access 
   NPPES public data in real-time, rather than through batched uploads. The API 
   retrieves data from NPPES daily.
+Imports:
+    httr,
+    jsonlite
 License: GPL (>= 2)
 Encoding: UTF-8
 LazyData: true
