@@ -15,18 +15,11 @@
 #' nppes_api("city=dayton")
 #' nppes_api("number=1124021324")
 
-if(!"httr"%in%installed.packages()){
-  install.packages("httr")
-}
-
-suppressPackageStartupMessages(library("httr"))
-library("httr")
-
 nppes_api <- function(query) {
 
   # Query the NPPES API
-  url <- modify_url("https://npiregistry.cms.hhs.gov/api/", query = query)
-  resp <- GET(url)
+  url <- httr::modify_url("https://npiregistry.cms.hhs.gov/api/", query = query)
+  resp <- httr::GET(url)
   if (http_type(resp) != "application/json") {
     stop("API did not return json", call. = FALSE)
   }
