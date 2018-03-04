@@ -1,0 +1,59 @@
+---
+title: "Introduction to nppesapi"
+author: "Brandon Greenwell and Dan Garmat"
+date: "`r Sys.Date()`"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Introduction to nppesapi}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, echo = FALSE}
+knitr::opts_chunk$set(echo = TRUE, fig.width = 5, fig.height = 5)
+```
+
+The `nppesapi` package queries the NPPES API with an R wrapper. It allows systems to access NPPES public data in real-time, rather than through batched uploads. The API retrieves data from NPPES daily. 
+
+
+For example, suppose we want to look up Dayton Children's Orthopardic Center for Spinal & Pediatric Care and know its NPI number 1124021324. We could query NPPES with:
+
+```{r intro}
+library(nppesapi)
+nppes_api("number=1124021324")
+```
+
+You can perform more advanced queries of the NPPES API. A full list of accepting API code is [on the NPPES wesite](https://npiregistry.cms.hhs.gov/registry/help-api).
+
+For instance, first 5 acupuncturists in zip code 97209:
+
+```{r advanced}
+query1 <- nppes_api("postal_code=97209&taxonomy_description=ACUPUNCTURIST&limit=5")
+query1
+```
+
+If then want to extract some information, such as all NPIs, could do the following:
+```{r advanced2}
+acuvec <- unlist(lapply(query1$content$results, '[[', "number")) # get the NPI number
+acuvec
+
+```
+
+Could also query a list of NPIs and use a custom function to extract a different field, such as ZIP. Here, using the same list, should all get 97209, and indeed do for primary practice address, addresses[[1]]:
+
+```{r advanced3}
+query2 <- (paste0("number=",acuvec))
+names(query2) <- acuvec
+
+npi_to_zip <- function(npi){
+  nppes_result <- nppes_api(npi)
+  zip <- nppes_result$content$results[[1]]$addresses[[1]]$postal_code
+  zip <- substr(zip, 1, 5)
+}
+
+npilist <- lapply(query2, npi_to_zip)
+
+table(unlist(npilist))  # hope to see 5 !!
+
+```
+
