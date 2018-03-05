@@ -34,7 +34,7 @@ at the moment. It can query any number of NPIs.
 
 ```
 npi_lookup(c(1649246182, 1831117050), field = "specialty")
-npi_lookup(c(1164470274, 1669420725, 1366490385, 1346298239, "1235187121"))
+npi_lookup(c(1942218276, 1275768434, "1124042692", 1013913409, "1932348661"))
 ```
 
 # Bug reports
