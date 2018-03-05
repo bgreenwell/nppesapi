@@ -76,3 +76,32 @@ nppes_fields <- function() {
   c("number", "enumeration_type", "taxonomy_description", "first_name", "last_name", "organization_name",
     "address_purpose", "city", "state", "postal_code", "country_code", "limit", "skip")
 }
+
+
+#' NPI to Specialty
+#'
+#' Query the NPPES NPI registry with an NPI and return provider's specialty.
+#'
+#' @param npi Valid 10 digit NPI (National Provider Identifier). Can be a numeric or string.
+#'
+#' @return An object of class \code{"data.frame"}; containing the NPI queried, specialty
+#' and date last updated in NPPES.
+#'
+#' @rdname npi_specialty
+#'
+#' @export
+#'
+#' @examples
+#' npi_specialty(1649246182)
+#' npi_specialty(1831117050)
+
+npi_specialty <- function(npi) {
+  if(nchar(npi) != 10){
+    stop("NPI to query for specialty must be of length 10")
+  }
+  nppes_result <- nppes_api(paste0("number=", npi))
+  specialty <- nppes_result$content$results[[1]]$taxonomies[[1]]$desc
+  last_updated <-  nppes_result$content$results[[1]]$basic$last_updated
+  data.frame("number" = npi, "specialty" = specialty, "last_updated" = last_updated)
+}
+
