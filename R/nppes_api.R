@@ -4,7 +4,7 @@
 #'
 #' @param query Character string representing a valid query.
 #'
-#' @return An bject of class \code{"nppes_api"}; essentially, an R list with
+#' @return An object of class \code{"nppes_api"}; essentially, an R list with
 #' various components depending on the submitted query.
 #'
 #' @rdname nppes_api
@@ -67,9 +67,12 @@ print.nppes_api <- function(x, ...) {
 #'
 #' Print available NPPES field values that can be queried.
 #'
-#' @references A vector containing the names of the available for querying.
+#' @references A vector containing the names of the available fields for querying.
+#' See https://npiregistry.cms.hhs.gov/registry/help-api for field format requirements.
+#' Fields updated March 5th, 2018
 #'
 #' @export
 nppes_fields <- function() {
-  c("number")
+  c("number", "enumeration_type", "taxonomy_description", "first_name", "last_name", "organization_name",
+    "address_purpose", "city", "state", "postal_code", "country_code", "limit", "skip")
 }
