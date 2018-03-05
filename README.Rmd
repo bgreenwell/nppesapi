@@ -12,7 +12,7 @@ For help with the **nppesapi** R-package, there is a vignette available in the /
 
 The package can be installed with
 
-    devtools::install_github("dgarmat/nppesapi")
+    devtools::install_github("bgreenwell/nppesapi")
 
 After installation, the package can be loaded into R.
 
@@ -28,7 +28,7 @@ nppes_api("number=1124021324")
 ```
 
 # Bug reports
-Report bugs as issues on the [GitHub repository](https://github.com/dgarmat/nppesapi)
+Report bugs as issues on the [GitHub repository](https://github.com/bgreenwell/nppesapi)
 
 # Contributors
 
