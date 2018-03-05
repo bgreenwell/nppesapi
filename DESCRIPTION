@@ -1,7 +1,7 @@
 Package: nppesapi
 Type: Package
 Title: An R Wrapper to the NPPES API
-Version: 0.0.2
+Version: 0.0.3
 Authors@R: c(
   person("Brandon", "Greenwell", email = "greenwell.brandon@gmail.com", role = c("aut", "cre")),
   person("Daniel", "Garmat", email = "dgarmat@gmail.com", role = c("aut"))

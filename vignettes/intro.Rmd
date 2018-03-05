@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE, fig.width = 5, fig.height = 5)
 The `nppesapi` package queries the NPPES API with an R wrapper. It allows systems to access NPPES public data in real-time, rather than through batched uploads. The API retrieves data from NPPES daily. 
 
 
-For example, suppose we want to look up Dayton Children's Orthopardic Center for Spinal & Pediatric Care and know its NPI number 1124021324. We could query NPPES with:
+For example, suppose we want to look up Dayton Children's Orthopedic Center for Spinal & Pediatric Care and know its NPI number 1124021324. We could query NPPES with:
 
 ```{r intro}
 library(nppesapi)

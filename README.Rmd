@@ -12,7 +12,7 @@ For help with the **nppesapi** R-package, there is a vignette available in the /
 
 The package can be installed with
 
-    devtools::install_github("dgarmat/nppesapi")
+    devtools::install_github("bgreenwell/nppesapi")
 
 After installation, the package can be loaded into R.
 
@@ -20,15 +20,25 @@ After installation, the package can be loaded into R.
 
 # Using nppesapi
 
-The main function in the **nppesapi** package is `nppes_api()`.  
+The main function in the **nppesapi** package is `nppes_api()`. It uses a query string acceptable to the NPPES API 
+and returns the response in a formatted object. This is essentially limited only by the API. One important 
+limitiation is 200 responses. This can be worked around with multiple queries and use of "limit=200&skip=200", etc.
 
 ```
 nppes_api("city=dayton")
 nppes_api("number=1124021324")
 ```
 
+A second function is `npi_lookup()`. It looks up a specific field for a list of NPIs. This is limited to specialty 
+at the moment. It can query any number of NPIs.
+
+```
+npi_lookup(c(1649246182, 1831117050), field = "specialty")
+npi_lookup(c(1942218276, 1275768434, "1124042692", 1013913409, "1932348661"))
+```
+
 # Bug reports
-Report bugs as issues on the [GitHub repository](https://github.com/dgarmat/nppesapi)
+Report bugs as issues on the [GitHub repository](https://github.com/bgreenwell/nppesapi)
 
 # Contributors
 
